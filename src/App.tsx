@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { SignatureCakes } from './components/SignatureCakes';
 import { InteractiveShowcase } from './components/InteractiveShowcase';
+import { HallBookingSection } from './components/HallBookingSection';
 import { BrandStory } from './components/BrandStory';
 import { IngredientsSection } from './components/IngredientsSection';
 import { Testimonials } from './components/Testimonials';
@@ -14,6 +15,7 @@ import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { QuickViewModal } from './components/QuickViewModal';
 import { OrderCelebrationModal } from './components/OrderCelebrationModal';
+import { BookHallModal } from './components/BookHallModal';
 import { SearchModal } from './components/SearchModal';
 
 export const App: React.FC = () => {
@@ -35,30 +37,34 @@ export const App: React.FC = () => {
         {/* 3. Interactive Cake Showcase — Made for Your Moments */}
         <InteractiveShowcase />
 
-        {/* 4. Brand Story Section — The Art of Baking, The Heart of Celebrating */}
+        {/* 4. Book Private Hall for Birthday Celebration with Cake */}
+        <HallBookingSection />
+
+        {/* 5. Brand Story Section — The Art of Baking, The Heart of Celebrating */}
         <BrandStory />
 
-        {/* 5. Ingredients & Craftsmanship Section — Only the Good Stuff. Always. */}
+        {/* 6. Ingredients & Craftsmanship Section — Only the Good Stuff. Always. */}
         <IngredientsSection />
 
-        {/* 6. Testimonials Section — Sweet Words, Happy Hearts */}
+        {/* 7. Testimonials Section — Sweet Words, Happy Hearts */}
         <Testimonials />
 
-        {/* 7. Instagram / Gallery Section — A Little Taste of Our World */}
+        {/* 8. Instagram / Gallery Section — A Little Taste of Our World */}
         <InstagramGallery />
 
-        {/* 8. FAQ Section — Frequently Asked Confections */}
+        {/* 9. FAQ Section — Frequently Asked Confections */}
         <FAQSection />
 
-        {/* 9. CTA Section — Your Celebration Deserves a Sweet Beginning */}
+        {/* 10. CTA Section — Your Celebration Deserves a Sweet Beginning */}
         <CTASection />
 
-        {/* 10. Premium Footer */}
+        {/* 11. Premium Footer */}
         <Footer />
 
         {/* Modals & Dialogs */}
         <QuickViewModal />
         <OrderCelebrationModal />
+        <BookHallModal />
         <SearchModal />
       </div>
     </CartProvider>

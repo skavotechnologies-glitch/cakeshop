@@ -26,3 +26,27 @@ export const getWhatsAppLink = (
 
   return `${base}?text=${encodeURIComponent(text)}`;
 };
+
+export const getHallBookingWhatsAppLink = (
+  packageTitle?: string,
+  guestCount?: string,
+  date?: string,
+  timeSlot?: string,
+  cakeChoice?: string,
+  birthdayPerson?: string
+): string => {
+  const base = `https://wa.me/${CONTACT_INFO.whatsappNumber}`;
+  let text = 'Hello Maison de Cake! 🏛️🎂 I would like to inquire about booking your Private Celebration Hall for a Birthday Party.';
+
+  if (packageTitle) {
+    text = `Hello Maison de Cake! 🏛️🎂\n\nI would like to book the *Private Celebration Hall*:\n• Package: *${packageTitle}*`;
+    if (guestCount) text += `\n• Guests Expected: ${guestCount}`;
+    if (birthdayPerson) text += `\n• Birthday Star: ${birthdayPerson}`;
+    if (date) text += `\n• Preferred Date: ${date}`;
+    if (timeSlot) text += `\n• Time Slot: ${timeSlot}`;
+    if (cakeChoice) text += `\n• Included Celebration Cake: ${cakeChoice}`;
+    text += '\n\nPlease let me know hall availability, decor options, and booking confirmation. Thank you!';
+  }
+
+  return `${base}?text=${encodeURIComponent(text)}`;
+};
