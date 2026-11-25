@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -6,41 +6,13 @@ import {
   ShieldCheck,
   Clock,
   Heart,
-  Volume2,
-  VolumeX,
-  Play,
-  Pause,
   Star
 } from 'lucide-react';
 import { useOrder } from '../context/CartContext';
 
 export const Hero: React.FC = () => {
   const { openGeneralOrder } = useOrder();
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [showAudioNotice, setShowAudioNotice] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const toggleSound = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-      setShowAudioNotice(false);
-    }
-  };
-
-  const togglePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
 
   const handleExploreScroll = () => {
     const element = document.getElementById('signature-cakes');
@@ -68,7 +40,7 @@ export const Hero: React.FC = () => {
           src="/videos/hero-cake.mp4"
           autoPlay
           loop
-          muted={isMuted}
+          muted
           playsInline
           className="w-full h-full object-cover object-center will-change-transform"
           style={{ imageRendering: 'auto', WebkitBackfaceVisibility: 'hidden' }}
@@ -247,53 +219,6 @@ export const Hero: React.FC = () => {
           </motion.div>
 
         </motion.div>
-      </div>
-
-      {/* Floating Video Audio & Playback Controls Widget (Bottom-Right) */}
-      <div className="absolute bottom-5 right-4 sm:bottom-6 sm:right-6 z-30 flex items-center space-x-2">
-        {/* Subtle Sound Notice Pill */}
-        {showAudioNotice && isMuted && (
-          <motion.div
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="hidden sm:inline-flex items-center px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-gold/40 text-[10px] text-gold font-medium"
-          >
-            🔊 Tap to unmute sound
-          </motion.div>
-        )}
-
-        <div className="flex items-center space-x-1.5 bg-black/70 backdrop-blur-md p-1.5 sm:p-2 rounded-full border border-gold/40 shadow-2xl">
-          <span className="flex items-center space-x-1.5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-gold">
-            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-            <span className="hidden sm:inline">Atelier Live</span>
-          </span>
-
-          <button
-            onClick={toggleSound}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-cream-100 flex items-center justify-center transition-colors"
-            title={isMuted ? 'Unmute video audio' : 'Mute video audio'}
-            aria-label={isMuted ? 'Unmute video audio' : 'Mute video audio'}
-          >
-            {isMuted ? (
-              <VolumeX className="w-3.5 h-3.5 text-gold" />
-            ) : (
-              <Volume2 className="w-3.5 h-3.5 text-gold animate-pulse" />
-            )}
-          </button>
-
-          <button
-            onClick={togglePlay}
-            className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-cream-100 flex items-center justify-center transition-colors"
-            title={isPlaying ? 'Pause video' : 'Play video'}
-            aria-label={isPlaying ? 'Pause video' : 'Play video'}
-          >
-            {isPlaying ? (
-              <Pause className="w-3.5 h-3.5 text-gold" />
-            ) : (
-              <Play className="w-3.5 h-3.5 text-gold translate-x-0.5" />
-            )}
-          </button>
-        </div>
       </div>
 
       {/* Bottom Scroll Indicator */}
