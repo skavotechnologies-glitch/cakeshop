@@ -10,7 +10,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
             ? 'bg-cream-100/95 backdrop-blur-md shadow-sm border-b border-gold/20 py-3 sm:py-3.5'
-            : 'bg-transparent py-5 lg:py-6'
+            : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-5 lg:py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,14 +44,30 @@ export const Navbar: React.FC = () => {
               href="#"
               className="group flex items-center space-x-2.5 sm:space-x-3 text-left focus:outline-none"
             >
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-gold/60 flex items-center justify-center bg-cream-200/60 text-gold group-hover:border-gold group-hover:scale-105 transition-all duration-300">
-                <span className="font-serif font-bold text-xs tracking-widest text-chocolate">M</span>
+              <div
+                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                  isScrolled
+                    ? 'border-gold/60 bg-cream-200/60 text-gold group-hover:border-gold group-hover:scale-105'
+                    : 'border-gold bg-black/40 text-gold shadow-md group-hover:scale-105'
+                }`}
+              >
+                <span className="font-serif font-bold text-xs tracking-widest">M</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif tracking-[0.2em] sm:tracking-[0.25em] text-base sm:text-lg lg:text-xl font-bold text-cocoa uppercase group-hover:text-chocolate transition-colors">
+                <span
+                  className={`font-serif tracking-[0.2em] sm:tracking-[0.25em] text-base sm:text-lg lg:text-xl font-bold uppercase transition-colors ${
+                    isScrolled
+                      ? 'text-cocoa group-hover:text-chocolate'
+                      : 'text-white group-hover:text-gold drop-shadow-md'
+                  }`}
+                >
                   Maison de Cake
                 </span>
-                <span className="text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-chocolate/70 font-medium hidden xs:block">
+                <span
+                  className={`text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] uppercase font-medium hidden xs:block ${
+                    isScrolled ? 'text-chocolate/70' : 'text-gold-light/90 drop-shadow'
+                  }`}
+                >
                   Parisian Atelier · Est. With Love
                 </span>
               </div>
@@ -63,7 +79,11 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="relative group text-xs xl:text-sm font-medium tracking-wide text-chocolate/85 hover:text-cocoa transition-colors py-1"
+                  className={`relative group text-xs xl:text-sm font-medium tracking-wide py-1 transition-colors ${
+                    isScrolled
+                      ? 'text-chocolate/85 hover:text-cocoa'
+                      : 'text-white/95 hover:text-gold drop-shadow-sm'
+                  }`}
                 >
                   {link.name}
                   <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold group-hover:w-full transition-all duration-300 ease-out" />
@@ -76,7 +96,11 @@ export const Navbar: React.FC = () => {
               {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 text-chocolate/80 hover:text-cocoa hover:bg-cream-200/80 rounded-full transition-all"
+                className={`p-2 rounded-full transition-all ${
+                  isScrolled
+                    ? 'text-chocolate/80 hover:text-cocoa hover:bg-cream-200/80'
+                    : 'text-white hover:text-gold hover:bg-white/10'
+                }`}
                 aria-label="Search cakes"
                 title="Search cakes"
               >
@@ -86,16 +110,22 @@ export const Navbar: React.FC = () => {
               {/* Single Luxury Order Button */}
               <button
                 onClick={openGeneralOrder}
-                className="inline-flex items-center space-x-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-chocolate text-cream-100 text-xs font-semibold tracking-wider uppercase hover:bg-cocoa shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 border border-gold/30"
+                className={`inline-flex items-center space-x-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg ${
+                  isScrolled
+                    ? 'bg-chocolate text-cream-100 hover:bg-cocoa border border-gold/30'
+                    : 'bg-gold text-cocoa hover:bg-gold-light shadow-gold-glow'
+                }`}
               >
-                <Sparkles className="w-3.5 h-3.5 text-gold" />
+                <Sparkles className="w-3.5 h-3.5" />
                 <span>Order Cake</span>
               </button>
 
               {/* Mobile Menu Toggle Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 text-chocolate hover:text-cocoa rounded-full"
+                className={`lg:hidden p-2 rounded-full transition-colors ${
+                  isScrolled ? 'text-chocolate hover:text-cocoa' : 'text-white hover:text-gold'
+                }`}
                 aria-label="Toggle mobile menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
@@ -133,7 +163,7 @@ export const Navbar: React.FC = () => {
                 ))}
               </div>
 
-              {/* Single clean order button in mobile menu */}
+              {/* Clean order button in mobile menu */}
               <div className="pt-6 border-t border-gold/20">
                 <button
                   onClick={() => {
