@@ -132,16 +132,16 @@ export const Hero: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Main Hero Content (Framed in an Ethereal Frosted Glass Atelier Card) */}
+      {/* Main Hero Content (Clean, Floating & Organic - No Box Outline) */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 text-center relative">
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-[2.5rem] p-6 sm:p-10 md:p-12 backdrop-blur-[6px] bg-gradient-to-b from-black/45 via-black/30 to-black/55 border border-white/25 shadow-[0_25px_60px_rgba(0,0,0,0.5)] overflow-hidden"
+          className="relative p-4 sm:p-8 md:p-10"
         >
-          {/* Subtle Golden Sheen on the Card Border */}
-          <div className="absolute inset-0 rounded-[2.5rem] border border-gold/40 pointer-events-none" />
+          {/* Soft Organic Ambient Text Halo (No Borders, No Box Outline) */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.45)_0%,_rgba(0,0,0,0.2)_45%,_transparent_70%)] pointer-events-none -z-10" />
 
           {/* Eyebrow Badge */}
           <motion.div
@@ -229,7 +229,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-10 pt-6 border-t border-white/20 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-cream-200"
+            className="mt-8 pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-cream-200"
           >
             <div className="flex items-center space-x-2 drop-shadow">
               <ShieldCheck className="w-4 h-4 text-gold shrink-0" />
