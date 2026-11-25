@@ -153,6 +153,16 @@ export const BrandStory: React.FC = () => {
                 Born From A Passion For Sweet Perfection
               </h3>
 
+              {/* Atelier Video Feature */}
+              <div className="rounded-2xl overflow-hidden aspect-video mb-5 border-2 border-gold/30 shadow-lg bg-cocoa relative group">
+                <video
+                  src="/videos/hero-cake.mp4"
+                  controls
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
               <div className="space-y-4 text-sm text-chocolate/80 leading-relaxed">
                 <p>
                   Maison de Cake was born from a simple yet unwavering conviction: celebratory cakes should be as magnificent to taste as they are to behold. What began as a boutique Parisian-inspired studio has blossomed into an atelier renowned for couture confectionery and joyful memories.
