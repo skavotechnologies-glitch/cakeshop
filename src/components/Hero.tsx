@@ -70,18 +70,19 @@ export const Hero: React.FC = () => {
           loop
           muted={isMuted}
           playsInline
-          className="w-full h-full object-cover object-center filter brightness-[1.03] contrast-[1.05] saturate-[1.12] transform scale-[1.02]"
+          className="w-full h-full object-cover object-center will-change-transform"
+          style={{ imageRendering: 'auto', WebkitBackfaceVisibility: 'hidden' }}
         />
 
-        {/* Minimal Vignettes so the Cake & Falling Sugar Remain Crisp & Bright */}
+        {/* Minimal Vignettes so the Cake & Falling Sugar Remain Crisp, Bright & 4K Clear */}
         {/* Subtle top header shade for menu readability */}
-        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/65 via-black/20 to-transparent pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-36 bg-gradient-to-b from-black/60 via-black/15 to-transparent pointer-events-none" />
         
         {/* Soft edge radial vignette preserving full center brightness */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_45%,_rgba(0,0,0,0.5)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_65%,_rgba(0,0,0,0.35)_100%)] pointer-events-none" />
 
         {/* Bottom seamless transition melt into next cream section */}
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-cream-50 via-cream-50/40 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream-50 via-cream-50/30 to-transparent pointer-events-none" />
       </div>
 
       {/* Floating Animated Falling Sugar Dust / Sparkle Ornaments */}
@@ -140,8 +141,8 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative p-4 sm:p-8 md:p-10"
         >
-          {/* Soft Organic Ambient Text Halo (No Borders, No Box Outline) */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.45)_0%,_rgba(0,0,0,0.2)_45%,_transparent_70%)] pointer-events-none -z-10" />
+          {/* Soft Organic Ambient Text Halo (No Borders, High Clarity) */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.22)_0%,_transparent_65%)] pointer-events-none -z-10" />
 
           {/* Eyebrow Badge */}
           <motion.div
