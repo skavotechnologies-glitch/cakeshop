@@ -45,6 +45,20 @@ export const Footer: React.FC = () => {
 
   return (
     <footer id="contact" className="bg-cocoa text-cream-100 pt-16 sm:pt-20 pb-24 sm:pb-12 relative overflow-hidden border-t-2 border-gold/30">
+      {/* Background Reference Video Layer in Footer */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none opacity-20 z-0">
+        <video
+          src="/videos/hero-cake.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.1]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-cocoa via-cocoa/90 to-cocoa/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_35%,_rgba(38,21,16,0.95)_100%)]" />
+      </div>
+
       {/* Ambient background glows */}
       <div className="absolute top-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-chocolate/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 sm:w-96 h-80 sm:h-96 bg-rose/10 rounded-full blur-3xl pointer-events-none" />

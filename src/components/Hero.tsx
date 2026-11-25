@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import {
   Sparkles,
   ArrowDown,
@@ -13,6 +13,39 @@ import { useOrder } from '../context/CartContext';
 export const Hero: React.FC = () => {
   const { openGeneralOrder } = useOrder();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll-driven animation scrub synchronized with reference video
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  useEffect(() => {
+    let scrollTimeout: any;
+    const unsubscribe = scrollYProgress.on('change', (progress) => {
+      if (videoRef.current && videoRef.current.duration) {
+        // Scrub video playback time in sync with scroll position
+        const targetTime = Math.min(progress * videoRef.current.duration, videoRef.current.duration - 0.05);
+        if (Math.abs(videoRef.current.currentTime - targetTime) > 0.03) {
+          videoRef.current.currentTime = targetTime;
+        }
+
+        // When scrolling stops and near the top, resume gentle ambient playback
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          if (progress < 0.05 && videoRef.current && videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        }, 300);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+      clearTimeout(scrollTimeout);
+    };
+  }, [scrollYProgress]);
 
   const handleExploreScroll = () => {
     const element = document.getElementById('signature-cakes');
@@ -31,7 +64,7 @@ export const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-28 overflow-hidden bg-black text-cream-100">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-24 pb-20 sm:pt-28 sm:pb-24 lg:pt-32 lg:pb-28 overflow-hidden bg-black text-cream-100">
       
       {/* 1. Full-Screen Background Video (Clear, Bright, Vibrant & Beautiful) */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
